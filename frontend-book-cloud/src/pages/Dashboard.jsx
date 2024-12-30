@@ -1,14 +1,25 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Dashboard = () => {
     const navigate = useNavigate();
     const goToCreateBook = () => navigate('/create-book');
+    const location = useLocation();
+    const successMessage = location.state?.successMessage;
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-800">Bienvenue sur le Dashboard</h1>
+        <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Tableau de bord</h1>
+      {successMessage && (
+        <div className="mb-4 p-4 bg-green-200 text-green-800 rounded">
+          {successMessage}
+        </div>
+      )}
+      {/* Autres contenus du tableau de bord */}
+    </div>
       </div>
 
       <div className="flex gap-8">
