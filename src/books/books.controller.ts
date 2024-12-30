@@ -6,7 +6,7 @@ export class BooksController {
     constructor(private readonly booksService: BooksService) {}
 
     @Post()
-    async addBook(@Body() book: { S: string; title: string; author: string; publishedYear: number }) {
+    async addBook(@Body() book: { S: string; title: string; description: string; author: string; publishedYear: number }) {
         return this.booksService.addBook(book);
     }
 
