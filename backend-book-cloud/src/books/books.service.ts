@@ -1,6 +1,6 @@
 import { Injectable} from '@nestjs/common';
 import { DynamoDBService } from '../config/aws-dynamodb.config';
-import { PutCommand, GetCommand, UpdateCommand, DeleteCommand } from '@aws-sdk/lib-dynamodb';
+import { PutCommand, GetCommand, UpdateCommand, DeleteCommand , ScanCommand } from '@aws-sdk/lib-dynamodb';
 import { CreateBookDto } from './books.dto'
 
 @Injectable()
@@ -97,6 +97,19 @@ export class BooksService {
       return { message: `Book returned by user ${userId}` };
     } catch (error) {
       throw new Error(`Error returning book: ${error.message}`);
+    }
+  }
+
+  async getAllBooks() {
+    try {
+      const result = await this.dynamoDBService.getClient().send(
+        new ScanCommand({
+          TableName: this.tableName,
+        }),
+      );
+      return result.Items; 
+    } catch (error) {
+      throw new Error(`Error retrieving books: ${error.message}`);
     }
   }
 }

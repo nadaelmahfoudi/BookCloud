@@ -31,4 +31,9 @@ export class BooksController {
     async returnBook(@Param('id') id: string, @Body('userId') userId: string) {
         return this.booksService.returnBook(id, userId);
     }
+    
+    @Get()
+    async getAllBooks() {
+      return this.booksService.getAllBooks();
+    }
 }

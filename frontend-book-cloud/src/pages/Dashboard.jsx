@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 const Dashboard = () => {
     const navigate = useNavigate();
     const goToCreateBook = () => navigate('/create-book');
+    const goToBooksList = () => navigate('/books-list');
     const location = useLocation();
     const successMessage = location.state?.successMessage;
   return (
@@ -50,7 +51,7 @@ const Dashboard = () => {
             <h3 className="text-xl font-semibold text-gray-800 mb-4">Actions Rapides</h3>
             <div className="space-y-4">
               <button onClick={goToCreateBook} className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none">Ajouter un livre</button>
-              <button className="w-full py-2 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none">Gérer les utilisateurs</button>
+              <button onClick={goToBooksList} className="w-full py-2 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none">Liste des livres</button>
               <button className="w-full py-2 px-4 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 focus:outline-none">Paramètres</button>
             </div>
           </div>

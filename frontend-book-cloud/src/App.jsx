@@ -6,6 +6,7 @@ import HomePage from './pages/Home';
 import ProfilePage from './pages/Profile';
 import DashboardPage from './pages/Dashboard';
 import CreateBook from './pages/Books/AddBook';
+import BooksList from './pages/Books/ListBook';
 import Footer from './components/Footer';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/create-book" element={<CreateBook />} />
+        <Route path="/books-list" element={<BooksList />} />
       </Routes>
       <Footer /> {/* Add Footer at the bottom */}
     </Router>
