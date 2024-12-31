@@ -9,6 +9,11 @@ const BooksList = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
+    const handleEditClick = (bookId) => {
+        navigate(`/edit/${bookId}`);
+    };
+    
+
     useEffect(() => {
         const fetchBooks = async () => {
             try {
@@ -51,7 +56,7 @@ const BooksList = () => {
                                 Détails
                             </button>
                             <button
-                                className="py-2 px-4 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 focus:outline-none transition-colors duration-300"
+                                onClick={() => handleEditClick(book.S)} className="py-2 px-4 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 focus:outline-none transition-colors duration-300"
                             >
                                 Modifier
                             </button>

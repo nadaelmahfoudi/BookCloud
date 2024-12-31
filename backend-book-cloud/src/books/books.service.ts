@@ -24,19 +24,20 @@ export class BooksService {
     }
   }
 
-  async getBook(key: string) {
+  async getBook(bookId: string) {  
     try {
-      const result = await this.dynamoDBService.getClient().send(
-        new GetCommand({
-          TableName: this.tableName,
-          Key: { S: key },
-        }),
-      );
-      return result.Item;
+        const result = await this.dynamoDBService.getClient().send(
+            new GetCommand({
+                TableName: this.tableName,
+                Key: { S: bookId },  
+            }),
+        );
+        return result.Item;  
     } catch (error) {
-      throw new Error(`Error retrieving book: ${error.message}`);
+        throw new Error(`Error retrieving book: ${error.message}`);
     }
-  }
+}
+
 
   async deleteBook(key: string) {
     try {
@@ -112,4 +113,41 @@ export class BooksService {
       throw new Error(`Error retrieving books: ${error.message}`);
     }
   }
+
+  async updateBook(S: string, updatedFields: Partial<CreateBookDto>) {
+    if (!updatedFields || Object.keys(updatedFields).length === 0) {
+      throw new Error('No fields provided for update');
+    }
+  
+    try {
+      const updateExpressions = [];
+      const expressionAttributeValues: Record<string, any> = {};
+      const expressionAttributeNames: Record<string, string> = {};
+  
+      for (const key in updatedFields) {
+        updateExpressions.push(`#${key} = :${key}`);
+        expressionAttributeValues[`:${key}`] = updatedFields[key];
+        expressionAttributeNames[`#${key}`] = key;
+      }
+  
+      const updateExpression = `SET ${updateExpressions.join(', ')}`;
+  
+      const result = await this.dynamoDBService.getClient().send(
+        new UpdateCommand({
+          TableName: this.tableName,
+          Key: { S }, 
+          UpdateExpression: updateExpression,
+          ExpressionAttributeValues: expressionAttributeValues,
+          ExpressionAttributeNames: expressionAttributeNames,
+          ReturnValues: 'ALL_NEW',
+        }),
+      );
+  
+      return result.Attributes;
+    } catch (error) {
+      throw new Error(`Error updating book: ${error.message}`);
+    }
+  }
+  
+  
 }
