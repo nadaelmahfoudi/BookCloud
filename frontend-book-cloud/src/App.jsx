@@ -6,7 +6,9 @@ import HomePage from './pages/Home';
 import ProfilePage from './pages/Profile';
 import DashboardPage from './pages/Dashboard';
 import CreateBook from './pages/Books/AddBook';
+import BooksList from './pages/Books/ListBook';
 import Footer from './components/Footer';
+import EditBook from './pages/Books/EditBook';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/create-book" element={<CreateBook />} />
+        <Route path="/books-list" element={<BooksList />} />
+        <Route path="/edit/:S" element={<EditBook />} />
       </Routes>
       <Footer /> {/* Add Footer at the bottom */}
     </Router>

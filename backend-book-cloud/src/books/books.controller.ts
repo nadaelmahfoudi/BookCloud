@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Delete, Body, Param } from '@nestjs/common';
+import { Controller, Post, Get, Delete, Patch, Body, Param } from '@nestjs/common';
 import { BooksService } from './books.service';
 
 @Controller('books')
@@ -10,9 +10,9 @@ export class BooksController {
         return this.booksService.addBook(book);
     }
 
-    @Get(':id')
-    async getBook(@Param('id') id: string) {
-        return this.booksService.getBook(id);
+    @Get(':bookId')  
+    async getBook(@Param('bookId') bookId: string) {  
+        return this.booksService.getBook(bookId);  
     }
 
     @Delete(':id')
@@ -31,4 +31,18 @@ export class BooksController {
     async returnBook(@Param('id') id: string, @Body('userId') userId: string) {
         return this.booksService.returnBook(id, userId);
     }
+    
+    @Get()
+    async getAllBooks() {
+      return this.booksService.getAllBooks();
+    }
+
+    @Patch(':S')
+    async updateBook(
+      @Param('S') S: string, 
+      @Body() updatedFields: Partial<{ title: string; description: string; author: string; publishedYear: number }>,
+    ) {
+      return this.booksService.updateBook(S, updatedFields); 
+    }
+    
 }
