@@ -12,7 +12,8 @@ async function bootstrap() {
   });
 
   const port = process.env.PORT ?? 3000; // Utilisation de la variable d'environnement PORT
-  await app.listen(port);
+  await app.listen(port, '0.0.0.0');
+
 
   console.log(`Application running on: http://localhost:${port}`);
 }
