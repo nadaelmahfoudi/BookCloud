@@ -1,6 +1,7 @@
 # BookCloud
 
 BookCloud is a modern application designed for a local library to enhance its digital services. The platform enables users to securely sign up, search and borrow books, and receive notifications for loan reminders and returns. Built with a microservices architecture and leveraging AWS for scalability, BookCloud is a robust solution for modern library management.
+![image](https://github.com/user-attachments/assets/a2ce5f0a-12e5-4876-9318-662b88bac94c)
 
 ---
 
@@ -12,16 +13,16 @@ BookCloud is a modern application designed for a local library to enhance its di
 
 2. **Book Management Service**
    - CRUD operations for books (admin only).
-   - Search books by title, author, or category.
+   - Search books by title, author.
    - Borrow and return books (authenticated users).
 
-3. **Frontend (Bookio Web)**
+3. **Frontend (BookCloud)**
    - Intuitive interface for users to interact with backend services.
    - Admin dashboard for managing books.
    - User dashboard for browsing, borrowing, and returning books.
 
 4. **Infrastructure & DevOps**
-   - Deployed using AWS ECS/Lambda, API Gateway, S3, and CloudFront.
+   - Deployed using AWS EC2, API Gateway, S3, and CloudFront.
    - CI/CD pipelines for automated deployment.
 
 ---
@@ -59,14 +60,6 @@ BookCloud is a modern application designed for a local library to enhance its di
 2. Install dependencies:
    ```bash
    npm install
-
-## Set up environment variables in `.env` file:
-
-```env
-AWS_ACCESS_KEY_ID=your-access-key  
-AWS_SECRET_ACCESS_KEY=your-secret-key  
-REGION=your-region
-
 ## 📖 API Documentation
 
 ### Authentication Service
@@ -84,4 +77,27 @@ REGION=your-region
 - **DELETE** `/books/:S`: Delete a book (admin only).
 - **POST** `/books/:id/borrow`: Borrow a book (authenticated user).
 - **POST** `/books/:id/return`: Return a book (authenticated user).
+  
+## Set up environment variables in `.env` file:
+
+
+Backend URL (AWS)
+Once deployed, your backend will be available at the following URL:
+
+Backend API URL: http://34.205.159.176:3000/books
+
+Frontend URL (AWS)
+Once deployed, your frontend will be available at the following URL:
+
+Frontend URL: http://bookcloudreact.s3-website-us-east-1.amazonaws.com/
+```env
+AWS_ACCESS_KEY_ID=your-access-key  
+AWS_SECRET_ACCESS_KEY=your-secret-key  
+REGION=your-region
+
+
+
+
+
+
 
