@@ -1,7 +1,8 @@
 # BookCloud
 
 BookCloud is a modern application designed for a local library to enhance its digital services. The platform enables users to securely sign up, search and borrow books, and receive notifications for loan reminders and returns. Built with a microservices architecture and leveraging AWS for scalability, BookCloud is a robust solution for modern library management.
-![image](https://github.com/user-attachments/assets/a2ce5f0a-12e5-4876-9318-662b88bac94c)
+![Alt text](images/bookcloud.png)
+
 
 ---
 
@@ -77,10 +78,10 @@ BookCloud is a modern application designed for a local library to enhance its di
 - **DELETE** `/books/:S`: Delete a book (admin only).
 - **POST** `/books/:id/borrow`: Borrow a book (authenticated user).
 - **POST** `/books/:id/return`: Return a book (authenticated user).
+
+
+## URLs for AWS:
   
-## Set up environment variables in `.env` file:
-
-
 Backend URL (AWS)
 Once deployed, your backend will be available at the following URL:
 
@@ -90,6 +91,9 @@ Frontend URL (AWS)
 Once deployed, your frontend will be available at the following URL:
 
 Frontend URL: http://bookcloudreact.s3-website-us-east-1.amazonaws.com/
+
+
+## Set up environment variables in `.env` file:
 ```env
 AWS_ACCESS_KEY_ID=your-access-key  
 AWS_SECRET_ACCESS_KEY=your-secret-key  
