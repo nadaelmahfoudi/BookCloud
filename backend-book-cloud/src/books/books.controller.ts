@@ -15,22 +15,22 @@ export class BooksController {
         return this.booksService.getBook(bookId);  
     }
 
-    @Delete(':id')
-    async deleteBook(@Param('id') id: string) {
-        return this.booksService.deleteBook(id);
-    }
+    // @Delete(':id')
+    // async deleteBook(@Param('id') id: string) {
+    //     return this.booksService.deleteBook(id);
+    // }
 
     // Borrow a book
-    @Post(':id/borrow')
-    async borrowBook(@Param('id') id: string, @Body('userId') userId: string) {
-        return this.booksService.borrowBook(id, userId);
-    }
+    // @Post(':id/borrow')
+    // async borrowBook(@Param('id') id: string, @Body('userId') userId: string) {
+    //     return this.booksService.borrowBook(id, userId);
+    // }
 
     // Return a borrowed book
-    @Post(':id/return')
-    async returnBook(@Param('id') id: string, @Body('userId') userId: string) {
-        return this.booksService.returnBook(id, userId);
-    }
+    // @Post(':id/return')
+    // async returnBook(@Param('id') id: string, @Body('userId') userId: string) {
+    //     return this.booksService.returnBook(id, userId);
+    // }
     
     @Get()
     async getAllBooks() {
