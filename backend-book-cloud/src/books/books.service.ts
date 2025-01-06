@@ -39,67 +39,67 @@ export class BooksService {
 }
 
 
-  async deleteBook(key: string) {
-    try {
-      await this.dynamoDBService.getClient().send(
-        new DeleteCommand({
-          TableName: this.tableName,
-          Key: { S: key },
-        }),
-      );
-      return { message: 'Book deleted successfully!' };
-    } catch (error) {
-      throw new Error(`Error deleting book: ${error.message}`);
-    }
-  }
+  // async deleteBook(key: string) {
+  //   try {
+  //     await this.dynamoDBService.getClient().send(
+  //       new DeleteCommand({
+  //         TableName: this.tableName,
+  //         Key: { S: key },
+  //       }),
+  //     );
+  //     return { message: 'Book deleted successfully!' };
+  //   } catch (error) {
+  //     throw new Error(`Error deleting book: ${error.message}`);
+  //   }
+  // }
 
-  async borrowBook(bookId: string, userId: string) {
-    try {
-      const result = await this.dynamoDBService.getClient().send(
-        new UpdateCommand({
-          TableName: this.tableName,
-          Key: { S: bookId },
-          UpdateExpression: 'SET isBorrowed = :isBorrowed, borrowedBy = :borrowedBy',
-          ExpressionAttributeValues: {
-            ':isBorrowed': true,
-            ':borrowedBy': userId,
-          },
-          ReturnValues: 'ALL_NEW',
-        }),
-      );
+  // async borrowBook(bookId: string, userId: string) {
+  //   try {
+  //     const result = await this.dynamoDBService.getClient().send(
+  //       new UpdateCommand({
+  //         TableName: this.tableName,
+  //         Key: { S: bookId },
+  //         UpdateExpression: 'SET isBorrowed = :isBorrowed, borrowedBy = :borrowedBy',
+  //         ExpressionAttributeValues: {
+  //           ':isBorrowed': true,
+  //           ':borrowedBy': userId,
+  //         },
+  //         ReturnValues: 'ALL_NEW',
+  //       }),
+  //     );
 
-      if (result.Attributes?.isBorrowed) {
-        return { message: `Book borrowed by user ${userId}` };
-      } else {
-        return { message: 'Book is already borrowed.' };
-      }
-    } catch (error) {
-      throw new Error(`Error borrowing book: ${error.message}`);
-    }
-  }
+  //     if (result.Attributes?.isBorrowed) {
+  //       return { message: `Book borrowed by user ${userId}` };
+  //     } else {
+  //       return { message: 'Book is already borrowed.' };
+  //     }
+  //   } catch (error) {
+  //     throw new Error(`Error borrowing book: ${error.message}`);
+  //   }
+  // }
 
-  async returnBook(bookId: string, userId: string) {
-    try {
-      const result = await this.dynamoDBService.getClient().send(
-        new UpdateCommand({
-          TableName: this.tableName,
-          Key: { S: bookId },
-          UpdateExpression: 'SET isBorrowed = :isBorrowed, borrowedBy = :borrowedBy',
-          ExpressionAttributeValues: {
-            ':isBorrowed': false,
-            ':borrowedBy': '',
-            ':userId': userId, // Add this line to define :userId
-          },
-          ConditionExpression: 'borrowedBy = :userId', // Ensure that the book is being returned by the right user
-          ReturnValues: 'ALL_NEW',
-        }),
-      );
+  // async returnBook(bookId: string, userId: string) {
+  //   try {
+  //     const result = await this.dynamoDBService.getClient().send(
+  //       new UpdateCommand({
+  //         TableName: this.tableName,
+  //         Key: { S: bookId },
+  //         UpdateExpression: 'SET isBorrowed = :isBorrowed, borrowedBy = :borrowedBy',
+  //         ExpressionAttributeValues: {
+  //           ':isBorrowed': false,
+  //           ':borrowedBy': '',
+  //           ':userId': userId, // Add this line to define :userId
+  //         },
+  //         ConditionExpression: 'borrowedBy = :userId', // Ensure that the book is being returned by the right user
+  //         ReturnValues: 'ALL_NEW',
+  //       }),
+  //     );
 
-      return { message: `Book returned by user ${userId}` };
-    } catch (error) {
-      throw new Error(`Error returning book: ${error.message}`);
-    }
-  }
+  //     return { message: `Book returned by user ${userId}` };
+  //   } catch (error) {
+  //     throw new Error(`Error returning book: ${error.message}`);
+  //   }
+  // }
 
   async getAllBooks() {
     try {
