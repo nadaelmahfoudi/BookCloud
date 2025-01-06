@@ -1,8 +1,6 @@
 # BookCloud
 
 BookCloud is a modern application designed for a local library to enhance its digital services. The platform enables users to securely sign up, search and borrow books, and receive notifications for loan reminders and returns. Built with a microservices architecture and leveraging AWS for scalability, BookCloud is a robust solution for modern library management.
-![BookCloud Image](images/bookcloud)
-
 
 ---
 
